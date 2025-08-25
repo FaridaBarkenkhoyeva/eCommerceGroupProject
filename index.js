@@ -1,8 +1,10 @@
-const express = require ("express");
-const sequelize  = require("./db/db");
+const express = require("express");
+const user = require("./Models/User");
 
 const app = express();
 
+
+user.sync();
 
 app.get("/", (req, res) => {
     res.send("This is the homepage");
