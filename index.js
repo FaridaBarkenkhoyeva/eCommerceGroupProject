@@ -1,5 +1,8 @@
-const express = require ("express")
+const express = require ("express");
+const sequelize  = require("./db/db");
+
 const app = express();
+
 
 app.get("/", (req, res) => {
     res.send("This is the homepage");
