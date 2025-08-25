@@ -1,14 +1,14 @@
 const express = require("express");
 const user = require("./Models/User");
+const userRoutes = require("./routers/userRouter");
 
 const app = express();
 
 
 user.sync();
 
-app.get("/", (req, res) => {
-    res.send("This is the homepage");
-})
+
+app.use("/user", userRoutes)
 
 
 const port = 3000
