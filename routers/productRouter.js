@@ -1,8 +1,10 @@
 const { Router } = require("express");
-const testFunction = require("../controllers/controllers");
-const productFunction = require("../controllers/controllers");
+const { productFunction, productDetial, createNewProduct } = require("../controllers/controllers");
 
 const productRoutes = Router();
 productRoutes.get("/", productFunction);
+productRoutes.get("/:id", productDetial);
+productRoutes.post("/", createNewProduct);
+
 
 module.exports = productRoutes;
