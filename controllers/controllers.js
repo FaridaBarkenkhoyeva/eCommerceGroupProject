@@ -1,4 +1,5 @@
 // const { INTEGER } = require("sequelize");
+const category = require("../models/Category");
 const theproduct = require("../models/Product");
 // const user = require("../models/User");
 
@@ -78,6 +79,37 @@ const delProduct = async (req, res) => {
 
 
 
-module.exports = { testFunction,  productFunction, productDetial, createNewProduct, updateProduct,  delProduct };
+const categoryList = async (req, res) => {
+  try {
+    const allCategory = await category.findAll();
+    res.send(allCategory);
+  } catch (error) {
+    res.json("there was an error:", error.message);
+  }
+};
+
+
+
+const createNewCategory = async (req, res) => {
+  // res.send(req.body)
+  const { id, name } = req.body;
+  console.log(req.body)
+  try {
+    await theproduct.create({
+      id : id,
+      name: name,
+    });
+    res.send("Category Created!");
+  } catch (error) {
+    res.json({"error": error});
+  }
+};
+
+
+
+
+
+
+module.exports = { testFunction,  productFunction, productDetial, createNewProduct, updateProduct,  delProduct, categoryList, createNewCategory };
 // module.exports = productFunction;
 // module.exports = productDetial;
