@@ -5,4 +5,4 @@ const { testFunction } = require("../controllers/controllers");
 const userRoutes = Router();
 userRoutes.get("/", testFunction);
 
-module.exports = userRoutes;
+// module.exports = userRoutes;

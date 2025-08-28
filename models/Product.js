@@ -1,13 +1,13 @@
 const sequelize = require("../db/db");
 const { DataTypes } = require("sequelize");
 
-const product = sequelize.define(
-  "product",
+const theproduct = sequelize.define(
+  "theproduct",
 
   {
     id: {
       type: DataTypes.INTEGER,
-    //   autoIncrement: true,
+      autoIncrement: true,
       allowNull: false,
       primaryKey: true
     },
@@ -33,4 +33,4 @@ const product = sequelize.define(
 );
 
 
-module.exports = product
+module.exports = theproduct

@@ -1,17 +1,17 @@
 const express = require("express");
-const user = require("./models/User");
-const userRoutes = require("./routers/userRouter");
+// const user = require("./models/User");
+// const userRoutes = require("./routers/userRouter");
 const productRoutes = require("./routers/productRouter");
-const product = require("./models/Product");
+const theproduct = require("./models/Product");
 
 
 const app = express();
 app.use(express.json());
 
-user.sync();
-product.sync();
+// user.sync();
+theproduct.sync();
 
-app.use("/user", userRoutes)
+// app.use("/user", userRoutes)
 app.use("/products", productRoutes)
 // app.use("/products/:id", productRoutes)
 const port = 3000

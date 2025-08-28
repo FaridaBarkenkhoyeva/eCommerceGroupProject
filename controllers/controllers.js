@@ -1,6 +1,6 @@
 const { INTEGER } = require("sequelize");
-const product = require("../models/Product");
-const user = require("../models/User");
+const theproduct = require("../models/Product");
+// const user = require("../models/User");
 
 
 const testFunction = async (req, res) => {
@@ -9,7 +9,7 @@ const testFunction = async (req, res) => {
 
 const productFunction = async (req, res) => {
   try {
-    const allProduct = await product.findAll();
+    const allProduct = await theproduct.findAll();
     res.send(allProduct);
   } catch (error) {
     res.json("there was an error:", error.message);
@@ -19,7 +19,7 @@ const productFunction = async (req, res) => {
 const productDetial = async (req, res) => {
 const reqId = Number(req.params.id);
   try {
-    const selectedProduct = await product.findAll(
+    const selectedProduct = await theproduct.findAll(
         { where: { id: reqId } } 
     );
     res.send(selectedProduct);
@@ -35,7 +35,7 @@ const createNewProduct = async (req, res) => {
   const { id, Name, description, price,  categoryId } = req.body;
   console.log(req.body)
   try {
-    await product.create({
+    await theproduct.create({
       id : id,
       Name: Name,
       description: description,
@@ -48,6 +48,36 @@ const createNewProduct = async (req, res) => {
   }
 };
 
-module.exports = { testFunction,  productFunction, productDetial, createNewProduct };
+
+export const updateProduct = async (req, res) => {
+  const reqId = Number(req.params.id);
+  const { id, Name, description, price,  categoryId } = req.body;
+  try {
+    const updated = await theproduct.update(
+      { id, Name, description, price,  categoryId }, 
+      { where: { id: reqId } }        
+    );
+    res.send("User Updated");
+  } catch (error) {
+    res.json("there was an error:", error.message);
+  }
+}
+
+
+export const delProduct = async (req, res) => {
+  try {
+    const reqId = Number(req.params.id);
+    await theproduct.destroy({
+      where: { id: reqId },
+    });
+    res.send("User deleted");
+  } catch (error) {
+    res.json("there was an error:", error.message);
+  }
+}
+
+
+
+module.exports = { testFunction,  productFunction, productDetial, createNewProduct, updateProduct,  delProduct };
 // module.exports = productFunction;
 // module.exports = productDetial;
