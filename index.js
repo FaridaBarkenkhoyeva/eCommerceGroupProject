@@ -11,6 +11,10 @@ const app = express();
 app.use(express.json());
 
 // user.sync();
+
+category.hasMany(theproduct, { foreignKey: 'categoryId' });
+theproduct.belongsTo(category, { foreignKey: 'categoryId' });
+
 theproduct.sync();
 category.sync()
 
